@@ -23,11 +23,11 @@ class TextPreprocessing:
 
     @staticmethod
     def get_corpus(file_path):
-        # dataset = pd.read_csv('./nlp_assignment/jobcloud_published_job_titles.csv', header=None, names=['Job Titles'])
         dataset = pd.read_csv(file_path, header=None, names=['Job Titles'], encoding='utf8')
-        freq = pd.Series(' '.join(dataset['Job Titles']).split()).value_counts()[:300]        
+        # freq = pd.Series(' '.join(dataset['Job Titles']).split()).value_counts()
         
         corpus = []
+        lexicon = set()
         for i in range(len(dataset)):
             #Convert to lowercase
             text = dataset['Job Titles'][i].lower()
@@ -41,12 +41,10 @@ class TextPreprocessing:
             ##Convert to list from string
             text = text.split()
 
-            ##Stemming
-            ps=PorterStemmer()
-
             #Lemmatisation
             lem = WordNetLemmatizer()
-            text = [lem.lemmatize(word) for word in text if not word in stop_words] 
+            text = [lem.lemmatize(word) for word in text if not word in stop_words]
+            lexicon.update(text)
             text = " ".join(text)
             corpus.append(text)
 
