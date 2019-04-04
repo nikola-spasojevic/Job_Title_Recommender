@@ -16,18 +16,16 @@ stop_words_french = set(stopwords.words('french'))
 stop_words = stop_words.union(stop_words_french)
 stop_words_german = set(stopwords.words('german'))
 stop_words = stop_words.union(stop_words_german)
-# new_words = ["using", "show", "result", "large", "also", "iv", "one", "two", "new", "previously", "shown"]
-# stop_words = stop_words.union(new_words)
+
+JOB_TITLE_DATA_DIR = '../input/jobcloud_published_job_titles.csv'
 
 class TextPreprocessing:
-
+    # process the iput data to get a valid body of text
     @staticmethod
-    def get_corpus(file_path):
-        dataset = pd.read_csv(file_path, header=None, names=['Job Titles'], encoding='utf8')
-        # freq = pd.Series(' '.join(dataset['Job Titles']).split()).value_counts()
+    def get_corpus(job_title_data_dir):
+        dataset = pd.read_csv(job_title_data_dir, header=None, names=['Job Titles'], encoding='utf8')
         
-        corpus = []
-        lexicon = set()
+        corpus, tokenized_corpus = [], []
         for i in range(len(dataset)):
             #Convert to lowercase
             text = dataset['Job Titles'][i].lower()
@@ -38,22 +36,29 @@ class TextPreprocessing:
             # remove special characters and digits
             text=re.sub("(\\d|\\W)+"," ",text)
 
-            ##Convert to list from string
+            #Convert to list from string
             text = text.split()
 
+            # The goal of both stemming and lemmatization is to reduce inflectional forms and sometimes derivationally 
+            # related forms of a word to a common base form.
+            
             #Lemmatisation
             lem = WordNetLemmatizer()
-            text = [lem.lemmatize(word) for word in text if not word in stop_words]
-            lexicon.update(text)
+            text = [lem.lemmatize(word) for word in text]
+
+            #Stemming - not needed with this data
+            # porter = PorterStemmer()
+            # text = [porter.stem(word) for word in text if not word in stop_words]
+
             text = " ".join(text)
             corpus.append(text)
 
         with open('../bin/corpus.pkl', 'wb') as output:
             pickle.dump(corpus, output)
-            output.close()  
+            output.close()
 
 def main():
-    TextPreprocessing.get_corpus('../input/jobcloud_published_job_titles.csv')
+    TextPreprocessing.get_corpus(JOB_TITLE_DATA_DIR)
 
 if __name__ == "__main__":
    main()
