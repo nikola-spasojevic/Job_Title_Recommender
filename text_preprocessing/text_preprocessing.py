@@ -49,7 +49,7 @@ class TextPreprocessing:
             lem = WordNetLemmatizer()
             text = [lem.lemmatize(word) for word in text]
 
-            #Stemming - not needed with this data
+            #Stemming - would improve the quality of proposed results
             # porter = PorterStemmer()
             # text = [porter.stem(word) for word in text if not word in stop_words]
 
