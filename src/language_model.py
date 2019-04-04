@@ -1,22 +1,21 @@
 from nltk.lm import MLE
 # from nltk.probability import LidstoneProbDist, WittenBellProbDist, ConditionalFreqDist
 from nltk.lm.preprocessing import pad_both_ends, flatten, padded_everygram_pipeline
-import pickle
 from collections import defaultdict
+from .helper.tokenizer import Tokenizer
+import pickle
 
-TOKENIZED_CORPUS_DIR = '../bin/tokenized_corpus.pkl'
-NGRAMS_DIR = '../bin/ngrams.pkl'
+TOKENIZED_CORPUS_DIR = 'bin/tokenized_corpus.pkl'
+NGRAMS_DIR = 'bin/ngrams.pkl'
 N_GRAM = 3
 
 class NgramLanguageModel:
 	@staticmethod
 	def calc_likelihood(tokenized_corpus_dir=TOKENIZED_CORPUS_DIR, ngrams_dir=NGRAMS_DIR, n_gram=N_GRAM):
-		with open(tokenized_corpus_dir, 'rb') as pickle_in:
-			tokenized_corpus = pickle.load(pickle_in, encoding='utf8')
-
 		with open(ngrams_dir, 'rb') as pickle_in:
 			ngrams = pickle.load(pickle_in, encoding='utf8')
 
+		tokenized_corpus = Tokenizer.job_data_tokenizer()
 		train_data, padded_sents = padded_everygram_pipeline(N_GRAM, tokenized_corpus)
 		lm = MLE(n_gram) # Maximum Likelihood Estimator (MLE) model
 		lm.fit(train_data, padded_sents)	
@@ -35,7 +34,7 @@ class NgramLanguageModel:
 						# we create a mapping of given word y to a list of possible next words and their scores
 						likelihoods[y].append((score, x)) 
 
-		with open('../bin/likelihoods.pkl', 'wb') as output:
+		with open('bin/likelihoods.pkl', 'wb') as output:
 			pickle.dump(likelihoods, output)
 			output.close()
 

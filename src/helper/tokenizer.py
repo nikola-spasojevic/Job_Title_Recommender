@@ -1,6 +1,6 @@
 import pickle
 
-CORPUS_DIR = '../bin/corpus.pkl'
+CORPUS_DIR = 'bin/corpus.pkl'
 
 class Tokenizer:
 	@staticmethod
@@ -13,9 +13,7 @@ class Tokenizer:
 		for i in corpus:
 			tokenized_corpus.append(i.split())
 
-		with open('../bin/tokenized_corpus.pkl', 'wb') as output:
-			pickle.dump(tokenized_corpus, output)
-			output.close()
+		return tokenized_corpus
 
 def main():
 	Tokenizer.job_data_tokenizer()

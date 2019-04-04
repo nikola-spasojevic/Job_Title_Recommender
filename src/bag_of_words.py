@@ -5,14 +5,14 @@ import numpy as np
 import pandas as pd
 import pickle
 
-CORPUS_DIR = '../bin/corpus.pkl'
+CORPUS_DIR = 'bin/corpus.pkl'
 N_GRAM_RANGE = (1,3)
 
 # Bag Of Words Model: calculate ngram frequencies - tokenise the text and build a vocabulary of tokens.
 # It takes into account only the frequency of the words in the vocabulary, not their order or position
 class BagOfWords:
 	@staticmethod
-	def ngram_frequencies(corpus_dir=CORPUS_DIR, ngram_range=N_GRAM_RANGE):
+	def ngram_frequencies_gen(corpus_dir=CORPUS_DIR, ngram_range=N_GRAM_RANGE):
 		with open(corpus_dir, 'rb') as pickle_in:
 			corpus = pickle.load(pickle_in, encoding='utf8')
 
@@ -50,16 +50,16 @@ class BagOfWords:
 		ngrams = get_ngrams()
 		unigram_freq = base_freq(len(ngrams[1]))
 		
-		with open('../bin/unigram_freq.pkl', 'wb') as output:
+		with open('bin/unigram_freq.pkl', 'wb') as output:
 			pickle.dump(unigram_freq, output)
 			output.close()
 
-		with open('../bin/ngrams.pkl', 'wb') as output:
+		with open('bin/ngrams.pkl', 'wb') as output:
 			pickle.dump(ngrams, output)
 			output.close()
 
 def main():
-    BagOfWords.ngram_frequencies()
+    BagOfWords.ngram_frequencies_gen()
 
 if __name__ == "__main__":
    main()

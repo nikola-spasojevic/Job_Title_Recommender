@@ -11,7 +11,7 @@ from nltk.corpus import stopwords
 #nltk.download('wordnet') 
 from nltk.stem.wordnet import WordNetLemmatizer
 
-JOB_TITLE_DATA_DIR = '../input/jobcloud_published_job_titles.csv'
+JOB_TITLE_DATA_DIR = 'input/jobcloud_published_job_titles.csv'
 
 stop_words = set(stopwords.words('english'))
 stop_words_french = set(stopwords.words('french'))
@@ -56,7 +56,7 @@ class TextPreprocessing:
             text = " ".join(text)
             corpus.append(text)
 
-        with open('../bin/corpus.pkl', 'wb') as output:
+        with open('bin/corpus.pkl', 'wb') as output:
             pickle.dump(corpus, output)
             output.close()
 

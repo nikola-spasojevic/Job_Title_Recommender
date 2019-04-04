@@ -1,10 +1,10 @@
-from trie import Trie
+from .helper.trie import Trie
 import pickle
 from heapq import heappush, heappushpop, heappop
 from collections import deque
 
-UNIGRAM_FREQ_DIR='../bin/unigram_freq.pkl'
-LIKELIHOODS_DIR='../bin/likelihoods.pkl'
+UNIGRAM_FREQ_DIR='bin/unigram_freq.pkl'
+LIKELIHOODS_DIR='bin/likelihoods.pkl'
 CAPACITY=5
 N_GRAM=3
 
