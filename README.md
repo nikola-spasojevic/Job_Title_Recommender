@@ -1,4 +1,4 @@
-# Job_Title_Recommender
+# Job Title Recommender
 
 This is a project used to improve the effectiveness of writing Job Title postings.
 
@@ -20,7 +20,7 @@ First of all, in the Bag of Words model, using the CountVectorizer class, we are
 
 The ngram frequencies are calculated in a dedicated dictionary, where the keys represent our entire ngram vocabulary.
 
-# 3. Maximum Likelihood Estimation Language Model
+## 3. Maximum Likelihood Estimation Language Model
 
 The training data is first tokenized and padded in order to account for beggining and ending context. The data is then fitted into the MLE model which is used to calculate the likelihood of each token in each sentence given its previous context.
 
