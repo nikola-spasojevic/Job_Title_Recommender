@@ -61,7 +61,9 @@ The entropy is calculated as the total sum of the log probability of each word g
 
 
 
-## Autocompletion functionality implemented using Trie and Bag-Of-Words model
+## Autocomplete
+
+Autocompletion functionality is implemented using a Trie datastructire and Bag-Of-Words model to calculate unigram frequencies.
 
 We first tokenize our text body and build a vocabulary of tokens (tokens can be unigrams, bigrams or trigrams - for this project).
 The BoW model takes into account #ONLY the tokens' relative frequency in the ngram vocabulary (not their order or position).
@@ -78,7 +80,8 @@ e.g. when inputting the word: 'jav', we can get a few possible results ranked by
 
 We could expand this Relative Frequency Trie Scoring System to Bigrams and Trigrams, but as mentioned earlier, this kind of model does not account for context of previous words/inputs, but rather just how often this sequence appeared in our text.
 
-## Keyword suggestion functionality is based of tri/bigram statistical language model using Maximum Likelihood Estimation
+# Predict next word
+Keyword suggestion functionality is based of tri/bigram statistical language model using Maximum Likelihood Estimation
 We want to account for previous occurences of word sequences. Based upon Maximum Likelihood, a sequence of words (context) has a set of 'next word' results. This is used to predict the next possible words based on training data.
 This being MLE, the model returns a single word's relative frequency to the context (either 2 or 1 word prior to it) as its score.
 
