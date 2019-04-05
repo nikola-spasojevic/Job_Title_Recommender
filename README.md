@@ -36,7 +36,10 @@ These likelihood scores are calculated and saved in memory in order to provide t
 
 # Laplace Smoothing
 
-Since the MLE may overfit the data: it will assign 0 probabilities to words it hasn't seen. We need smoothing 
+Since the MLE may overfit the data: it will assign 0 probabilities to words it hasn't seen. We need smoothing:
+http://mlwiki.org/index.php/Smoothing_for_Language_Models
+
+In our model, we choose Laplace/Additive Smoothing
 
 # 4. Model Evaluation
 
