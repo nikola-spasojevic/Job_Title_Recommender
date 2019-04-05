@@ -33,6 +33,16 @@ Similarly with two words of context, we get a trigram model score.
 
 These likelihood scores are calculated and saved in memory in order to provide the Keyword suggestion functionality.
 
+# Since MLE may overfit the data: it will assign 0 probabilities to words it hasn't seen. We need smoothing
+
+# 4. Model Evaluation
+
+A model is evaluated by calculating the total entropy of the language model on the test corpus. 
+The entropy is calculated as the total sum of the log probability of each word given ngrams in the test corpus.
+	
+	Model Evaluation Score (Entropy): 12.333434915284093
+
+
 # JobTitleRecommender Function Descriptions:
 
 
