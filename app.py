@@ -16,8 +16,6 @@ def main():
 
 	print(job_title_recommender.auto_complete('jav'))
 	print(job_title_recommender.propose_next_word('gibberish software'))
-
-
-	# Evaluation to be done using word error rate (WER. using edit distance
+	
 if __name__ == "__main__":
    main()
