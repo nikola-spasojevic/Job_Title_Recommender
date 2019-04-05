@@ -26,11 +26,11 @@ The training data is first tokenized and padded in order to account for begginin
 
 The purpose of training a language model is to have a score of how probable words are in certain contexts:
 
-- If there is not context (i.e. a unigram model), the model returns the item's relative frequency as its score.
+- If there is no context (i.e. a unigram model), the model returns the item's relative frequency as its score.
 - But of there is a single word of context, we get a bigram model score.
 - Similarly with two words of context, we get a trigram model score.
 
-These likelihood scores are calculated and saved in memory in order to provide the Keyword suggestion functionality. Since the MLE may overfit the data: it will assign 0 probabilities to words it hasn't seen. We need smoothing:
+These likelihood scores are calculated and saved in memory in order to provide the 'Predict Next Word' functionality. Since the MLE may overfit the data: it will assign 0 probabilities to words it hasn't seen. We need smoothing:
 http://mlwiki.org/index.php/Smoothing_for_Language_Models
 
 	Usage of MLE: Predict the probability of an equivalence class using its relative frequency in the training data:
