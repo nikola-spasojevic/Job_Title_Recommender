@@ -1,12 +1,12 @@
 from sklearn.feature_extraction.text import CountVectorizer
 from collections import Counter, defaultdict
-
 import numpy as np
 import pandas as pd
 import pickle
+import os
 
-CORPUS_DIR = 'bin/corpus.pkl'
-N_GRAM_RANGE = (1,3)
+CORPUS_DIR='bin/train_corpus.pkl'
+N_GRAM_RANGE=(1,3)
 
 # Bag Of Words Model: calculate ngram frequencies - tokenise the text and build a vocabulary of tokens.
 # It takes into account only the frequency of the words in the vocabulary, not their order or position
@@ -59,7 +59,7 @@ class BagOfWords:
 			output.close()
 
 def main():
-    BagOfWords.ngram_frequencies_gen()
+	BagOfWords.ngram_frequencies_gen()
 
 if __name__ == "__main__":
    main()
