@@ -4,7 +4,7 @@ This is a project used to improve the effectiveness of writing Job Title posting
 
 In each step of the pipeline process, the intermittent state is saved to local memory and loaded into each next stage in order to maintain efficiency when prototyping models and tweaking.
 
-HOW TO RUN:
+**HOW TO RUN:**
 
 Pull into local directory and run (make sure to have all relevant python3 libraries installed):
 	
@@ -23,23 +23,30 @@ The ngram frequencies are calculated in a dedicated dictionary, where the keys r
 
 The training data is first tokenized and padded in order to account for beggining and ending context. The data is then fitted into the MLE model which is used to calculate the likelihood of each token in each sentence given its previous context.
 
-The purpose of training a language model is to have a score of how probable words are in certain contexts.
+The purpose of training a language model is to have a score of how probable words are in certain contexts:
 
-If there is not context (i.e. a unigram model), the model returns the item's relative frequency as its score.
+- If there is not context (i.e. a unigram model), the model returns the item's relative frequency as its score.
+- But of there is a single word of context, we get a bigram model score.
+- Similarly with two words of context, we get a trigram model score.
 
-But of there is a single word of context, we get a bigram model score.
-
-Similarly with two words of context, we get a trigram model score.
-
-These likelihood scores are calculated and saved in memory in order to provide the Keyword suggestion functionality.
-
-
-# Laplace Smoothing
-
-Since the MLE may overfit the data: it will assign 0 probabilities to words it hasn't seen. We need smoothing:
+These likelihood scores are calculated and saved in memory in order to provide the Keyword suggestion functionality. Since the MLE may overfit the data: it will assign 0 probabilities to words it hasn't seen. We need smoothing:
 http://mlwiki.org/index.php/Smoothing_for_Language_Models
 
-In our model, we choose Laplace/Additive Smoothing
+	Usage of MLE: Predict the probability of an equivalence class using its relative frequency in the training data:
+
+	– C(x) = count of x in training, N = number of training instances
+
+	● Problems with MLE:
+
+	– Underestimates the probability for unseen data: C (x)=0
+
+	● Maybe we just didn't have enough training data
+
+	– Overestimates the probability for rare data: C (x)=1
+
+	● Estimates based on one training sample are unreliable
+
+	– Solution: smoothing (In our model, we choose Laplace/Additive Smoothing)
 
 # 4. Model Evaluation
 
@@ -89,23 +96,6 @@ e.g. when inputting the word: 'java software', we can get a results ranked by th
 
 *If the most previous word is out of context (or doesn't exist), we revert back to the autocmplete/unigram model.
 Or, we can still use the MLE models unigram model score (the 2 models should be compared in further work)
-
-
-Usage of MLE: Predict the probability of an equivalence class using its relative frequency in the training data:
-
-– C(x) = count of x in training, N = number of training instances
-
-● Problems with MLE:
-
-– Underestimates the probability for unseen data: C (x)=0
-
-● Maybe we just didn't have enough training data
-
-– Overestimates the probability for rare data: C (x)=1
-
-● Estimates based on one training sample are unreliable
-
-– Solution: smoothing
 
 # TODO: Model Evaluation is to be done using Word Error Rate (WER)
 The WER score can be derived from the Edit Distance, which can be ran on teh test set in which we can see for each job posting how does the model complete the job posting given the data.
