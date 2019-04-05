@@ -88,14 +88,14 @@ This being MLE, the model returns a single word's relative frequency to the cont
 **Example**
 e.g. when inputting the word: 'java software', we can get a results ranked by there relative trigram frequency scores:
 
-	input: job_title_recommender.propose_next_word('java software')
+	input: job_title_recommender.predict_next_word('java software')
 
 	[(0.6, 'engineer'), (0.2, 'entwickler'), (0.2, 'developer')]
 
 
 *if the second most previous word is out of context (or doesn't exist), we revert to a bigram model and return the MLE model's highest scoring bigram values
 
-	input: job_title_recommender.propose_next_word('gibberish software')
+	input: job_title_recommender.predict_next_word('gibberish software')
 
 	[(0.3880597014925373, 'engineer'), (0.16417910447761194, 'entwickler'), (0.1044776119402985, 'ingenieur'), (0.07462686567164178, 'developer'), (0.04477611940298507, 'architect')]
 
