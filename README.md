@@ -23,3 +23,5 @@ We want to account for previous
 # likelihoods are precalculated in the Language Model module
 	# Based upon Maximum Likelihood, a sequence of words (context) has a set of 'next word' results.
 	# This is used to predict the next possible words based on training data# This is only useful for single words, since BoW does not account for context of previous text
+	# This being MLE, the model returns a single word's relative frequency as its score. 
+	# print(lm.unmasked_score('java')) P('java')
