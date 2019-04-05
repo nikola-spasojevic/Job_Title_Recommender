@@ -74,7 +74,7 @@ Usage of MLE: Predict the probability of an equivalence class using its relative
 
 – Solution: smoothing
 
-# Proper Model Evaluation is to be dones using Word Error Rate (WER)
+# TODO: Proper Model Evaluation is to be done using Word Error Rate (WER)
 The WER score can be derived from the Edit Distance, which can be ran on teh test set in which we can see for each job posting how does the model complete the job posting given the data.
 
 ● Weighted scores can be given based on Insertion, Deletion, Substitution
