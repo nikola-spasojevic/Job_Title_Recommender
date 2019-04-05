@@ -4,6 +4,7 @@ import pickle
 import re
 import nltk
 import codecs
+import os
 #nltk.download('stopwords')
 from nltk.stem.porter import PorterStemmer
 from nltk.tokenize import RegexpTokenizer
@@ -13,25 +14,22 @@ from nltk.stem.wordnet import WordNetLemmatizer
 
 JOB_TITLE_DATA_DIR = 'input/jobcloud_published_job_titles.csv'
 
-stop_words = set(stopwords.words('english'))
-stop_words_french = set(stopwords.words('french'))
-stop_words = stop_words.union(stop_words_french)
-stop_words_german = set(stopwords.words('german'))
-stop_words = stop_words.union(stop_words_german)
-
 # Process the iput data to get a valid body of text
 class TextPreprocessing:
     @staticmethod
     def corpus_gen(job_title_data_dir=JOB_TITLE_DATA_DIR):
         dataset = pd.read_csv(job_title_data_dir, header=None, names=['Job Titles'], encoding='utf8')
+
+        stop_words = set(stopwords.words('english'))
+        stop_words_french = set(stopwords.words('french'))
+        stop_words = stop_words.union(stop_words_french)
+        stop_words_german = set(stopwords.words('german'))
+        stop_words = stop_words.union(stop_words_german)
         
         corpus, tokenized_corpus = [], []
         for i in range(len(dataset)):
             #Convert to lowercase
             text = dataset['Job Titles'][i].lower()
-            
-            #remove tags
-            text=re.sub("&lt;/?.*?&gt;"," &lt;&gt; ",text)
 
             # remove special characters and digits
             text=re.sub("(\\d|\\W)+"," ",text)
@@ -49,19 +47,28 @@ class TextPreprocessing:
             lem = WordNetLemmatizer()
             text = [lem.lemmatize(word) for word in text]
 
-            #Stemming - would improve the quality of proposed results
+            #Stemming - could potentially improve the quality of proposed results
             # porter = PorterStemmer()
             # text = [porter.stem(word) for word in text if not word in stop_words]
 
             text = " ".join(text)
             corpus.append(text)
 
-        with open('bin/corpus.pkl', 'wb') as output:
-            pickle.dump(corpus, output)
+        # Train on 95% of the corpus and test on the rest
+        spl = int(95*len(corpus)/100)
+        test_corpus = corpus[spl:]
+        train_corpus = corpus[:spl]
+
+        with open('bin/test_corpus.pkl', 'wb') as output:
+            pickle.dump(test_corpus, output)
+            output.close()
+
+        with open('bin/train_corpus.pkl', 'wb') as output:
+            pickle.dump(train_corpus, output)
             output.close()
 
 def main():
-    TextPreprocessing.corpus_gen()
+    TextPreprocessing.corpus_gen() 
 
 if __name__ == "__main__":
    main()
