@@ -1,6 +1,6 @@
 # Job_Title_Recommender
 
-This is project used to improve the text of job postings
+This is a project used to improve the effectiveness of writing Job Title postings.
 
 # Autocompletion functionality implemented using Trie and Bag-Of-Words model
 We first tokenize our text body and build a vocabulary of tokens (tokens can be unigrams, bigrams or trigrams - for this project).
@@ -18,16 +18,10 @@ We could expand this Relative Freuqeuncy Trie Scoring System to Bigrams and Trig
 
 
 # Keyword suggestion functionality is based of tri/bigram statistical language model using Maximum Likelihood Estimatation
-We want to account for previous 
-# Likelihood estimator for generic ngrams (excluding unigrams)
-# likelihoods are precalculated in the Language Model module
-	# Based upon Maximum Likelihood, a sequence of words (context) has a set of 'next word' results.
-	# This is used to predict the next possible words based on training data# This is only useful for single words, since BoW does not account for context of previous text
-	# This being MLE, the model returns a single word's relative frequency as its score. 
-	# print(lm.unmasked_score('java')) P('java')
+We want to account for previous occurences of word sequences. Based upon Maximum Likelihood, a sequence of words (context) has a set of 'next word' results. This is used to predict the next possible words based on training data
+This being MLE, the model returns a single word's relative frequency to the context (either 2 or 1 word prior to it) as its score.
 
-Predict the probability of an equivalence class using
-its relative frequency in the training data:
+Predict the probability of an equivalence class using its relative frequency in the training data:
 – C(x) = count of x in training, N = number of training instances
 ● Problems with MLE:
 – Underestimates the probability for unseen data: C (x)=0
