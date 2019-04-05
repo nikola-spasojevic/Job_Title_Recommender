@@ -8,7 +8,7 @@ In each step of the pipeline process, the intermittent state is saved to local m
 The First step is to clean the data and generate a valid corpus for training(95%) and testing(5% of total corpus).
 This is done by removing special characters and digits, converting everything to lower case, removing stopwords from all languages, lemmatisation (and possibly stemming for future models), tokenization.
 
-# 2. Vocabulary Creation
+# 2. Get Model Vocabulary and Ngram frequencies
 First of all, in the Bag of Words model, using the CountVectorizer class, we are able to extract all unigram, bigrams and trigrams from our training set and generate a frequency distribution for these ngrams.
 
 The ngram frequencies are calculated in a dedicated dictionary, where the keys represent our entire ngram vocabulary.
