@@ -9,12 +9,13 @@ In each step of the pipeline process, the intermittent state is saved to local m
 Pull into local directory and run (make sure to have all relevant python3 libraries installed):
 	
 	python3 app.py
+# Implemetation
 
-# 1. Data Preparation
+## 1. Data Preparation
 The First step is to clean the data and generate a valid corpus for training(95%) and testing(5% of total corpus).
 This is done by removing special characters and digits, converting everything to lower case, removing stopwords from all languages, lemmatisation (and possibly stemming for future models), tokenization.
 
-# 2. Get Model Vocabulary and Ngram frequencies
+## 2. Get Model Vocabulary and Ngram frequencies
 First of all, in the Bag of Words model, using the CountVectorizer class, we are able to extract all unigram, bigrams and trigrams from our training set and generate a frequency distribution for these ngrams.
 
 The ngram frequencies are calculated in a dedicated dictionary, where the keys represent our entire ngram vocabulary.
@@ -48,7 +49,7 @@ http://mlwiki.org/index.php/Smoothing_for_Language_Models
 
 	– Solution: smoothing (In our model, we choose Laplace/Additive Smoothing)
 
-# 4. Model Evaluation
+## 4. Model Evaluation
 
 A model is evaluated by calculating the total entropy of the language model on the test corpus. 
 The entropy is calculated as the total sum of the log probability of each word given ngrams in the test corpus.
@@ -56,7 +57,7 @@ The entropy is calculated as the total sum of the log probability of each word g
 	Model Evaluation Score (Entropy): 12.333434915284093
 
 
-## JobTitleRecommender Function Descriptions:
+# JobTitleRecommender Function Descriptions:
 
 
 
