@@ -2,7 +2,23 @@
 
 This is a project used to improve the effectiveness of writing Job Title postings.
 
+# 1. Data Preparation
+The First step is to clean the data and generate a valid corpus for training(95%) and testing(5% of total corpus).
+This is done by removing special characters and digits, converting everything to lower case, removing stopwords from all languages, lemmatisation (and possibly stemming for future models), tokenization (eve though we do this in other parts of the process, it is still part of the data preparation process)
 
+# 2. Vocabulary Creation
+First of all, in the Bag of Words model, using the CountVectorizer class, we are able to extract all unigram, bigrams and trigrams from our training set and generate a frequency distribution for these ngrams.
+
+The ngram frequencies are calculated 
+
+
+# 3. Maximum Likelihood Estimation Language Model
+Similarly in the previous step, 
+
+
+In each step of the pipeline process, the intermittent state is saved to local memory and loaded into each next stage in order to maintain efficiency when prototyping models and tweaking.
+
+# JobTitleRecommender Function Descriptions:
 
 # Autocompletion functionality implemented using Trie and Bag-Of-Words model
 We first tokenize our text body and build a vocabulary of tokens (tokens can be unigrams, bigrams or trigrams - for this project).
@@ -18,11 +34,10 @@ job_title_recommender.auto_complete('jav')
 
 	[(0.006204173716864072, 'java'), (0.00018800526414739614, 'javascript'), (0.00018800526414739614, 'javaee')]
 
-We could expand this Relative Freuqeuncy Trie Scoring System to Bigrams and Trigrams, but as mentioned earlier, this kind of model does not account for context of previous words/inputs, but rather just how often this sequence appeared in our text.
+We could expand this Relative Frequency Trie Scoring System to Bigrams and Trigrams, but as mentioned earlier, this kind of model does not account for context of previous words/inputs, but rather just how often this sequence appeared in our text.
 
-
-# Keyword suggestion functionality is based of tri/bigram statistical language model using Maximum Likelihood Estimatation
-We want to account for previous occurences of word sequences. Based upon Maximum Likelihood, a sequence of words (context) has a set of 'next word' results. This is used to predict the next possible words based on training data
+# Keyword suggestion functionality is based of tri/bigram statistical language model using Maximum Likelihood Estimation
+We want to account for previous occurences of word sequences. Based upon Maximum Likelihood, a sequence of words (context) has a set of 'next word' results. This is used to predict the next possible words based on training data.
 This being MLE, the model returns a single word's relative frequency to the context (either 2 or 1 word prior to it) as its score.
 
 Example
@@ -58,3 +73,8 @@ Usage of MLE: Predict the probability of an equivalence class using its relative
 ● Estimates based on one training sample are unreliable
 
 – Solution: smoothing
+
+# Proper Model Evaluation is to be dones using Word Error Rate (WER)
+The WER score can be derived from the Edit Distance, which can be ran on teh test set in which we can see for each job posting how does the model complete the job posting given the data.
+
+● Weighted scores can be given based on Insertion, Deletion, Substitution
