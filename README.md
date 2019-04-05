@@ -72,7 +72,8 @@ In other words, no context is used to complete a word (unigram) or a couple of w
 This, combined with a Trie datastructure that simulates a graph of letter states, takes into account the input string and search all subtrees for possible word endings, along with their realtive word frequencies and returns a ranking of the top 5 results. 
 
 **Example**
-e.g. when inputting the word: 'jav', we can get a few possible results ranked by there relative unigram frequency scores:
+
+when inputting the word: 'jav', we can get a few possible results ranked by there relative unigram frequency scores:
 
 	input: job_title_recommender.auto_complete('jav')
 
@@ -86,7 +87,8 @@ We want to account for previous occurences of word sequences. Based upon Maximum
 This being MLE, the model returns a single word's relative frequency to the context (either 2 or 1 word prior to it) as its score.
 
 **Example**
-e.g. when inputting the word: 'java software', we can get a results ranked by there relative trigram frequency scores:
+
+when inputting the word: 'java software', we can get a results ranked by there relative trigram frequency scores:
 
 	input: job_title_recommender.predict_next_word('java software')
 
