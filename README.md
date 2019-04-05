@@ -25,3 +25,13 @@ We want to account for previous
 	# This is used to predict the next possible words based on training data# This is only useful for single words, since BoW does not account for context of previous text
 	# This being MLE, the model returns a single word's relative frequency as its score. 
 	# print(lm.unmasked_score('java')) P('java')
+
+Predict the probability of an equivalence class using
+its relative frequency in the training data:
+– C(x) = count of x in training, N = number of training instances
+● Problems with MLE:
+– Underestimates the probability for unseen data: C (x)=0
+● Maybe we just didn't have enough training data
+– Overestimates the probability for rare data: C (x)=1
+● Estimates based on one training sample are unreliable
+– Solution: smoothing
