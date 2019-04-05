@@ -33,7 +33,7 @@ input: job_title_recommender.propose_next_word('java software')
 
 *if the second most previous word is out of context (or doesn't exist), we revert to a bigram model and return the MLE model's highest scoring bigram values
 
-input: job_title_recommender.propose_next_word('hsbka software')
+input: job_title_recommender.propose_next_word('gibberish software')
 
 	[(0.3880597014925373, 'engineer'), (0.16417910447761194, 'entwickler'), (0.1044776119402985, 'ingenieur'), (0.07462686567164178, 'developer'), (0.04477611940298507, 'architect')]
 
@@ -44,12 +44,18 @@ Or, we can still use the MLE models unigram model score (the 2 models should be 
 
 	
 
+Usage of MLE: Predict the probability of an equivalence class using its relative frequency in the training data:
 
-Predict the probability of an equivalence class using its relative frequency in the training data:
 – C(x) = count of x in training, N = number of training instances
+
 ● Problems with MLE:
+
 – Underestimates the probability for unseen data: C (x)=0
+
 ● Maybe we just didn't have enough training data
+
 – Overestimates the probability for rare data: C (x)=1
+
 ● Estimates based on one training sample are unreliable
+
 – Solution: smoothing
