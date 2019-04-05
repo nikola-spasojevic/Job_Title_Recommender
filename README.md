@@ -4,6 +4,11 @@ This is a project used to improve the effectiveness of writing Job Title posting
 
 In each step of the pipeline process, the intermittent state is saved to local memory and loaded into each next stage in order to maintain efficiency when prototyping models and tweaking.
 
+HOW TO RUN:
+
+Pull into local directory and run (make sure to have all relevant python3 libraries installed):
+	python3 app.py
+
 # 1. Data Preparation
 The First step is to clean the data and generate a valid corpus for training(95%) and testing(5% of total corpus).
 This is done by removing special characters and digits, converting everything to lower case, removing stopwords from all languages, lemmatisation (and possibly stemming for future models), tokenization.
