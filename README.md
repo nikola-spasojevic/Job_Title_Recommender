@@ -2,23 +2,34 @@
 
 This is a project used to improve the effectiveness of writing Job Title postings.
 
+In each step of the pipeline process, the intermittent state is saved to local memory and loaded into each next stage in order to maintain efficiency when prototyping models and tweaking.
+
 # 1. Data Preparation
 The First step is to clean the data and generate a valid corpus for training(95%) and testing(5% of total corpus).
-This is done by removing special characters and digits, converting everything to lower case, removing stopwords from all languages, lemmatisation (and possibly stemming for future models), tokenization (eve though we do this in other parts of the process, it is still part of the data preparation process)
+This is done by removing special characters and digits, converting everything to lower case, removing stopwords from all languages, lemmatisation (and possibly stemming for future models), tokenization.
 
 # 2. Vocabulary Creation
 First of all, in the Bag of Words model, using the CountVectorizer class, we are able to extract all unigram, bigrams and trigrams from our training set and generate a frequency distribution for these ngrams.
 
-The ngram frequencies are calculated 
-
+The ngram frequencies are calculated in a dedicated dictionary, where the keys represent our entire ngram vocabulary.
 
 # 3. Maximum Likelihood Estimation Language Model
-Similarly in the previous step, 
 
+The training data is first tokenized and padded in order to account for beggining and ending context. The data is then fitted into the MLE model which is used to calculate the likelihood of each token in each sentence given its previous context.
 
-In each step of the pipeline process, the intermittent state is saved to local memory and loaded into each next stage in order to maintain efficiency when prototyping models and tweaking.
+The purpose of training a language model is to have a score of how probable words are in certain contexts.
+
+If there is not context (i.e. a unigram model), the model returns the item's relative frequency as its score.
+
+But of there is a single word of context, we get a bigram model score.
+
+Similarly with two words of context, we get a trigram model score.
+
+These likelihood scores are calculated and saved in memory in order to provide the Keyword suggestion functionality.
 
 # JobTitleRecommender Function Descriptions:
+
+
 
 # Autocompletion functionality implemented using Trie and Bag-Of-Words model
 We first tokenize our text body and build a vocabulary of tokens (tokens can be unigrams, bigrams or trigrams - for this project).
