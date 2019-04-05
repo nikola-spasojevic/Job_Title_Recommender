@@ -2,6 +2,8 @@
 
 This is a project used to improve the effectiveness of writing Job Title postings.
 
+
+
 # Autocompletion functionality implemented using Trie and Bag-Of-Words model
 We first tokenize our text body and build a vocabulary of tokens (tokens can be unigrams, bigrams or trigrams - for this project).
 The BoW model takes into account #ONLY the tokens' relative frequency in the ngram vocabulary (not their order or position).
@@ -40,9 +42,6 @@ input: job_title_recommender.propose_next_word('gibberish software')
 *If the most previous word is out of context (or doesn't exist), we revert back to the autocmplete/unigram model.
 Or, we can still use the MLE models unigram model score (the 2 models should be compared in further work)
 
-
-
-	
 
 Usage of MLE: Predict the probability of an equivalence class using its relative frequency in the training data:
 
