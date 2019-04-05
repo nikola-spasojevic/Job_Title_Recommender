@@ -7,6 +7,7 @@ In each step of the pipeline process, the intermittent state is saved to local m
 HOW TO RUN:
 
 Pull into local directory and run (make sure to have all relevant python3 libraries installed):
+	
 	python3 app.py
 
 # 1. Data Preparation
