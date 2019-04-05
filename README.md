@@ -33,7 +33,10 @@ Similarly with two words of context, we get a trigram model score.
 
 These likelihood scores are calculated and saved in memory in order to provide the Keyword suggestion functionality.
 
-# Since MLE may overfit the data: it will assign 0 probabilities to words it hasn't seen. We need smoothing
+
+# Laplace Smoothing
+
+Since the MLE may overfit the data: it will assign 0 probabilities to words it hasn't seen. We need smoothing 
 
 # 4. Model Evaluation
 
