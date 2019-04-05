@@ -1,19 +1,18 @@
 import pickle
 
-CORPUS_DIR = 'bin/corpus.pkl'
+TRAIN_CORPUS_DIR = 'bin/train_corpus.pkl'
 
 class Tokenizer:
 	@staticmethod
-	def job_data_tokenizer(corpus_dir=CORPUS_DIR):
+	def job_data_tokenizer(train_corpus_dir=TRAIN_CORPUS_DIR):
+		with open(train_corpus_dir, 'rb') as pickle_in:
+			train_corpus = pickle.load(pickle_in, encoding='utf8')
 
-		with open(corpus_dir, 'rb') as pickle_in:
-			corpus = pickle.load(pickle_in, encoding='utf8')
+		tokenized_train_corpus = []
+		for i in train_corpus:
+			tokenized_train_corpus.append(i.split())
 
-		tokenized_corpus = []
-		for i in corpus:
-			tokenized_corpus.append(i.split())
-
-		return tokenized_corpus
+		return tokenized_train_corpus
 
 def main():
 	Tokenizer.job_data_tokenizer()
