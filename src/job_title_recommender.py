@@ -16,8 +16,6 @@ class JobTitleRecommender:
 		with open(likelihood_dir, 'rb') as pickle_in:
 			self.ngram_likelihood = pickle.load(pickle_in, encoding='utf8')
 
-		# print(self.bi_gram_likelihood)
-
 		self.trie = Trie()
 		for unigram in self.unigram_freq:
 			self.trie.insert(unigram)
@@ -45,7 +43,7 @@ class JobTitleRecommender:
 	# likelihoods are precalculated in the Language Model module
 	# Based upon Maximum Likelihood, a sequence of words (context) has a set of 'next word' results.
 	# This is used to predict the next possible words based on training data# This is only useful for single words, since BoW does not account for context of previous text
-	def propose_next_word(self, prev_text, capacity=CAPACITY):
+	def predict_next_word(self, prev_text, capacity=CAPACITY):
 		min_heap = []
 		prev_text_tokens = deque(prev_text.split(' ')[-N_GRAM+1:])
 
@@ -67,6 +65,7 @@ class JobTitleRecommender:
 
 def main():
 	job_title_recommender = JobTitleRecommender()
+	# Examples
 	print(job_title_recommender.auto_complete('engin'))
 	print(job_title_recommender.propose_next_word('ajksd ajskdk jkasdn java engineering'))
 
