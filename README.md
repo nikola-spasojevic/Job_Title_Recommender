@@ -144,6 +144,7 @@ The WER score can be derived from the Edit Distance, which can be ran on teh tes
 ● Weighted scores can be given based on Insertion, Deletion, Substitution
 
 **TODO: Compare and evaluate Bag Of Words statistical model against unigram scores from LM**
+
 Perhaps the unigram frequencies can provide more reliable autocomplete suggestions instead of the BoW model.
 
-**TODO: Include bigrams from teh Bag Of Words model for autocomplete suggestions**
+**TODO: Include bigrams from the Bag Of Words model for autocomplete suggestions**
