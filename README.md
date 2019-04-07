@@ -30,7 +30,13 @@ and 'Next Word Prediction' functions!!!
 	entwickler           |0.0003871467
 	developer            |0.0003871467
 
-In order to use 'Next Word Prediction', please make sure that the final input character is an empty space. Otherwise, it will default to the autocomplete function.
+In order to use 'Next Word Prediction', please make sure that the **final input character is an empty space**. 
+Otherwise, it will default to the autocomplete function.
+
+The score in the autocomplete function is based of unigram frequencies (Number of appearances of the word divided by the total number of words). The more often a word has appeared previously, the more likely it will come up again. 
+(This can be extended onto bigram and trigram frequencies).
+
+The score in the 'Next Word Prediction' function is calculated using a Maximum Likelihood Estimation (MLE) model, which calculates the likelihood of occurence of a word given a context (in this case, the last 2 previous words).
 
 
 # Implementation
