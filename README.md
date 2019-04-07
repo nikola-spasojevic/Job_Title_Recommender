@@ -49,12 +49,12 @@ This is done by removing special characters and digits, converting everything to
 In our case scenario, we choose to use 95% of the entire corpus for training and the remainder for testing.
 This is used to evaluate the model. 
 
-## 2. Get Model Vocabulary and Ngram frequencies
+## 3. Get Model Vocabulary and Ngram frequencies
 First of all, in the Bag of Words model, using the CountVectorizer class, we are able to extract all unigram, bigrams and trigrams from our training set and generate a frequency distribution for these ngrams.
 
 The ngram frequencies are calculated in a dedicated dictionary, where the keys represent our entire ngram vocabulary.
 
-## 3. Maximum Likelihood Estimation Language Model
+## 4. Maximum Likelihood Estimation Language Model
 
 The training data is first tokenized and padded in order to account for beggining and ending context. The data is then fitted into the MLE model which is used to calculate the likelihood of each token in each sentence given its previous context.
 
@@ -83,7 +83,7 @@ http://mlwiki.org/index.php/Smoothing_for_Language_Models
 
 	– Solution: smoothing (In our model, we choose Laplace/Additive Smoothing)
 
-## 4. Model Evaluation
+## 5. Model Evaluation
 
 A model is evaluated by calculating the total entropy of the language model on the test corpus. 
 The entropy is calculated as the total sum of the log probability of each word given ngrams in the test corpus.
