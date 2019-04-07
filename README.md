@@ -9,11 +9,39 @@ In each step of the pipeline process, the intermittent state is saved to local m
 Pull into local directory and run (make sure to have all relevant python3 libraries installed):
 	
 	python3 app.py
-# Implemetation
+	
+Enter a possible Job Title you might find interesting, and make use of the programs 'Autocomplete'
+
+	Input Job Title: 
+
+	jav
+
+	Autocomplete             Score
+	java                 |0.0058354406
+	javascript           |0.0001945147
+	javaee               |0.0001945147
+
+and 'Next Word Prediction' functions!!! 
+
+	java software 
+
+	Next Word Prediction     Score
+	engineer             |0.0007742935
+	entwickler           |0.0003871467
+	developer            |0.0003871467
+
+In order to use 'Next Word Prediction', please make sure that the final input character is an empty space. Otherwise, it will default to the autocomplete function.
+
+
+# Implementation
 
 ## 1. Data Preparation
 The First step is to clean the data and generate a valid corpus for training(95%) and testing(5% of total corpus).
 This is done by removing special characters and digits, converting everything to lower case, removing stopwords from all languages, lemmatisation (and possibly stemming for future models), tokenization.
+
+## 2. Separate data into a Training and Testing Corpus
+In our case scenario, we choose to use 95% of the entire corpus for training and the remainder for testing.
+This is used to evaluate the model. 
 
 ## 2. Get Model Vocabulary and Ngram frequencies
 First of all, in the Bag of Words model, using the CountVectorizer class, we are able to extract all unigram, bigrams and trigrams from our training set and generate a frequency distribution for these ngrams.
@@ -108,3 +136,8 @@ Or, we can still use the MLE models unigram model score (the 2 models should be 
 The WER score can be derived from the Edit Distance, which can be ran on teh test set in which we can see for each job posting how does the model complete the job posting given the data.
 
 ● Weighted scores can be given based on Insertion, Deletion, Substitution
+
+**TODO: Compare and evaluate Bag Of Words statistical model against unigram scores from LM**
+Perhaps the unigram frequencies can provide more reliable autocomplete suggestions instead of the BoW model.
+
+**TODO: Include bigrams from teh Bag Of Words model for autocomplete suggestions**
