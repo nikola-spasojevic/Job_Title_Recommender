@@ -1,18 +1,20 @@
 from sklearn.feature_extraction.text import CountVectorizer
 from collections import Counter, defaultdict
+from .text_preprocessing import TEST_CORPUS_DIR, TRAIN_CORPUS_DIR
 import numpy as np
 import pandas as pd
 import pickle
 import os
 
-CORPUS_DIR='bin/train_corpus.pkl'
+UNIGRAM_FREQ_DIR='bin/unigram_freq.pkl'
+NGRAMS_DIR='bin/ngrams.pkl'
 N_GRAM_RANGE=(1,3)
 
 # Bag Of Words Model: calculate ngram frequencies - tokenise the text and build a vocabulary of tokens.
 # It takes into account only the frequency of the words in the vocabulary, not their order or position
 class BagOfWords:
 	@staticmethod
-	def ngram_frequencies_gen(corpus_dir=CORPUS_DIR, ngram_range=N_GRAM_RANGE):
+	def ngram_frequencies_gen(corpus_dir=TRAIN_CORPUS_DIR, ngram_range=N_GRAM_RANGE):
 		with open(corpus_dir, 'rb') as pickle_in:
 			corpus = pickle.load(pickle_in, encoding='utf8')
 
@@ -35,14 +37,14 @@ class BagOfWords:
 		def get_ngrams():
 			ngrams = defaultdict(list)
 			for ng in ngram_list:
-				ng_split = ng.split(" ")
+				ng_split = ng.split(' ')
 				ngrams[len(ng_split)].append(ng)
 			return ngrams
 
 		def base_freq(unigram_counts):
 		    freqs = {}
 		    for ng in ngram_list:
-		        ng_split = ng.split(" ")
+		        ng_split = ng.split(' ')
 		        if len(ng_split) == 1:
 		        	freqs[ng] = sums[ng] / unigram_counts
 		    return freqs
@@ -50,16 +52,16 @@ class BagOfWords:
 		ngrams = get_ngrams()
 		unigram_freq = base_freq(len(ngrams[1]))
 		
-		with open('bin/unigram_freq.pkl', 'wb') as output:
+		with open(UNIGRAM_FREQ_DIR, 'wb') as output:
 			pickle.dump(unigram_freq, output)
 			output.close()
 
-		with open('bin/ngrams.pkl', 'wb') as output:
+		with open(NGRAMS_DIR, 'wb') as output:
 			pickle.dump(ngrams, output)
 			output.close()
 
 def main():
-	BagOfWords.ngram_frequencies_gen()
+	BagOfWords.ngram_frequencies_gen('../'+TRAIN_CORPUS_DIR)
 
 if __name__ == "__main__":
    main()
