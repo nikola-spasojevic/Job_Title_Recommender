@@ -27,8 +27,9 @@ def main():
 				result_list.extend(job_title_recommender.predict_next_word(var[:-1]))
 				print('\n{:<20}{:>10}'.format('Next Word Prediction', 'Score'))
 			else:
-				result_list.extend(job_title_recommender.auto_complete(var))
-				print('\n{:<20}{:>10}'.format('Autocmplete', 'Score'))
+				var = var.split(' ')
+				result_list.extend(job_title_recommender.auto_complete(var[-1]))
+				print('\n{:<20}{:>10}'.format('Autocomplete', 'Score'))
 			
 			for score, word in result_list:
 				print('{:<20} |{:>1.10f}'.format(word, score))
