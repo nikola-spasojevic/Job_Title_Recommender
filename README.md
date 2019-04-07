@@ -100,7 +100,7 @@ The entropy is calculated as the total sum of the log probability of each word g
 Autocompletion functionality is implemented using a Trie datastructire and Bag-Of-Words model to calculate unigram frequencies.
 
 We first tokenize our text body and build a vocabulary of tokens (tokens can be unigrams, bigrams or trigrams - for this project).
-The BoW model takes into account #ONLY the tokens' relative frequency in the ngram vocabulary (not their order or position).
+The BoW model takes into account **ONLY** the tokens' relative frequency in the ngram vocabulary (not their order or position).
 In other words, no context is used to complete a word (unigram) or a couple of words (bigram).
 
 This, combined with a Trie datastructure that simulates a graph of letter states, takes into account the input string and search all subtrees for possible word endings, along with their realtive word frequencies and returns a ranking of the top 5 results. 
