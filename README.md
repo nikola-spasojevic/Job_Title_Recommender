@@ -140,13 +140,14 @@ Or, we can still use the MLE models unigram model score (the 2 models should be 
 
 # TODO:
 
-**Model Evaluation is to be done using Word Error Rate (WER)**
+## Model Evaluation is to be done using Word Error Rate (WER)
+
 The WER score can be derived from the Edit Distance, which can be ran on teh test set in which we can see for each job posting how does the model complete the job posting given the data.
 
 ● Weighted scores can be given based on Insertion, Deletion, Substitution
 
-**Compare and evaluate Bag Of Words statistical model against unigram scores from LM**
+## Compare and evaluate Bag Of Words statistical model against unigram scores from LM
 
 Perhaps the unigram frequencies can provide more reliable autocomplete suggestions instead of the BoW model.
 
-**Include bigrams from the Bag Of Words model for autocomplete suggestions**
+## Include bigrams from the Bag Of Words model for autocomplete suggestions
